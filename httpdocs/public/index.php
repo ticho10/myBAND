@@ -27,7 +27,7 @@ if (isset($_SESSION['loggedin'])){
 }
 
 if (isset($_POST['submitAlbum'])){
-    upload_album();
+    album_uploud();
 }
 
 switch ($page){

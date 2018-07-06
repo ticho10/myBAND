@@ -19,6 +19,7 @@ function adminpage_action(){
 
     $smarty->display('header.tpl');
     $smarty->display('admin.tpl');
+    admin_album();
     delete_album();
     $smarty->display('footer.tpl');
 }
@@ -47,4 +48,8 @@ function beheerder_action(){
 function login_action(){
     global $smarty;
     check_login();
+}
+
+function album_uploud(){
+    upload_album();
 }

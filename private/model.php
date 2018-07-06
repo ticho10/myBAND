@@ -11,8 +11,8 @@ function make_connection(){
 
 function upload_album(){
 
-    $naam_album = $_POST['naamalbum'];
-    $nummers = $_POST['albumsongs'];
+    $naam_album = trim($_POST['naamalbum']);
+    $nummers = trim($_POST['albumsongs']);
 
     $temp_location = $_FILES['albumimage']['tmp_name'];
     $target_location = 'images/' . time() . $_FILES['albumimage']['name'];
@@ -36,7 +36,7 @@ function upload_album(){
     }
 }
 
-function delete_album(){
+function admin_album(){
     $mysqli = make_connection();
 
     $query = "SELECT *FROM album";
@@ -44,13 +44,23 @@ function delete_album(){
     $stmt= $mysqli->prepare($query);
     $stmt->bind_result($id, $naam, $nummer, $imagelink);
     $stmt->execute();
-
+    echo '<table>';
+    echo '<tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Songs</th>
+            <th>Image Link</th>
+        </tr>';
     while ($stmt->fetch()){
-        echo $id . '<br>';
-        echo $naam . '<br>';
-        echo $nummer . '<br>';
-        echo $imagelink . '<br>';
+        echo '<tr>';
+        echo '<td>' . $id . '</td>';
+        echo '<td>' . $naam . '</td>';
+        echo  '<td>' . nl2br($nummer) . '</td>';
+        echo '<td>' . $imagelink . '</td>';
+        echo '<th><a href="index.php?page=admin&id='. $id . '">Delete</a></th>';
+        echo '</tr>';
     }
+    echo '</table>';
 }
 
 function check_login(){
