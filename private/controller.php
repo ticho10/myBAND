@@ -9,18 +9,24 @@ function homepage_action(){
 function albumspage_action(){
 //    MODEL
     global $smarty, $page;
-    display_page($page);
+    $smarty->display('header.tpl');
+    $smarty->display('menu.tpl');
+    $album_info = admin_album();
+    $smarty->assign('album_info', $album_info);
+    $smarty->display( 'albums.tpl');
+    $smarty->display('toAdmin.tpl');
+    $smarty->display('footer.tpl');
 }
 
 function adminpage_action(){
     global $smarty;
-
-
-
     $smarty->display('header.tpl');
+    $smarty->display('menu.tpl');
     $smarty->display('admin.tpl');
-    admin_album();
-    delete_album();
+    $album_info = admin_album();
+    $smarty->assign('album_info', $album_info);
+    $smarty->display('albumtable.tpl');
+//    delete_album();
     $smarty->display('footer.tpl');
 }
 

@@ -39,28 +39,36 @@ function upload_album(){
 function admin_album(){
     $mysqli = make_connection();
 
-    $query = "SELECT *FROM album";
-
+    $query = "SELECT * FROM album";
     $stmt= $mysqli->prepare($query);
     $stmt->bind_result($id, $naam, $nummer, $imagelink);
     $stmt->execute();
-    echo '<table>';
-    echo '<tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Songs</th>
-            <th>Image Link</th>
-        </tr>';
+    $album_info = array();
     while ($stmt->fetch()){
-        echo '<tr>';
-        echo '<td>' . $id . '</td>';
-        echo '<td>' . $naam . '</td>';
-        echo  '<td>' . nl2br($nummer) . '</td>';
-        echo '<td>' . $imagelink . '</td>';
-        echo '<th><a href="index.php?page=admin&id='. $id . '">Delete</a></th>';
-        echo '</tr>';
+        $album = array();
+        $album[] = $id;
+        $album[] = $naam;
+        $album[] = nl2br($nummer);
+        $album[] = $imagelink;
+        $album_info[] = $album;
     }
-    echo '</table>';
+    return $album_info;
+}
+
+function delete_album(){
+    $mysqli = make_connection();
+
+    $id = isset($_GET['id']) ? $_GET['id'] : '';
+
+
+    $query = "DELETE FROM album WHERE id = ?";
+    $stmt = $mysqli->prepare($query) or die('error preparing');
+    $stmt->bind_param('i',$id) or die('error binding');
+    $stmt->execute() or die ('error executing');
+    header("index.php?page=admin");
+//    String mischien veranderen naar int
+//    Kan ook al een int zijn casten
+
 }
 
 function check_login(){
