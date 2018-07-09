@@ -34,6 +34,7 @@ function upload_album(){
         $stmt->execute() or die ("error execute");
 
     }
+    header('Location: index.php?page=admin');
 }
 
 function admin_album(){
@@ -65,7 +66,6 @@ function delete_album(){
     $stmt = $mysqli->prepare($query) or die('error preparing');
     $stmt->bind_param('i',$id) or die('error binding');
     $stmt->execute() or die ('error executing');
-    header("index.php?page=admin");
 //    String mischien veranderen naar int
 //    Kan ook al een int zijn casten
 

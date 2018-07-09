@@ -23,10 +23,11 @@ function adminpage_action(){
     $smarty->display('header.tpl');
     $smarty->display('menu.tpl');
     $smarty->display('admin.tpl');
+    $delete_album = delete_album();
+    $smarty->assign('delete_album',$delete_album);
     $album_info = admin_album();
     $smarty->assign('album_info', $album_info);
     $smarty->display('albumtable.tpl');
-//    delete_album();
     $smarty->display('footer.tpl');
 }
 

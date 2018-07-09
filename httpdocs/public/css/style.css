@@ -78,3 +78,29 @@ table-top{
     }
 
 }
+
+.logo{
+    width: 5em;
+    height: auto;
+}
+.header{
+    padding: 0;
+    margin: 0;
+}
+.navbar{
+    color: white;
+    background-color: black;
+}
+
+.navbar li{
+    list-style: none;
+}
+
+li a {
+    text-decoration: none;
+    padding: 5px;
+}
+
+.navbar-li-right{
+    float : right;
+}
