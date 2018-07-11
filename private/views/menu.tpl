@@ -9,6 +9,9 @@
         <li class="navbar-li-right">
             <a href="index.php?page=albums" >Albums</a>
         </li>
+        <li class="navbar-li-right">
+            <a href="index.php?page=contact" >Contact</a>
+        </li>
     </ul>
 
 

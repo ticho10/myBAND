@@ -7,7 +7,7 @@
 <div class="albums">
 {foreach from=$album_info item=album}
     <section class="cover">
-        <img src="{$album[3]}" alt="">
+        <img class="albumFoto" src="{$album[3]}" alt="">
         <article>
             <h3>{$album[1]}</h3>
             <ul class="album">

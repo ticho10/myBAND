@@ -60,12 +60,17 @@ function delete_album(){
     $mysqli = make_connection();
 
     $id = isset($_GET['id']) ? $_GET['id'] : '';
-
+    $location = isset($_GET['location']) ? $_GET['location'] : '';
+    $locationLength = strlen($location);
 
     $query = "DELETE FROM album WHERE id = ?";
     $stmt = $mysqli->prepare($query) or die('error preparing');
     $stmt->bind_param('i',$id) or die('error binding');
     $stmt->execute() or die ('error executing');
+    if ($locationLength >= 2 ){
+        unlink($location);
+        header("Location: index.php?page=admin");
+    }
 //    String mischien veranderen naar int
 //    Kan ook al een int zijn casten
 
@@ -78,4 +83,38 @@ function check_login(){
     if ($username == 'admin' && $password == 'admin'){
         $_SESSION['loggedin'] = 'loggedin';
     }
+}
+
+function send_mail(){
+    $to ='25030@ma-web.nl';
+    $subject =$_POST['subject'];
+    $message =$_POST['message'];
+    $headers ='From : '.$_POST['from'];
+
+    mail($to, $subject, $message, $headers);
+
+    header('Location: index.php?page=home');
+}
+
+function counter(){
+    global $page;
+    $home = file_get_contents("file/home.txt");
+    $album = file_get_contents("file/contact.txt");
+    $contact = file_get_contents("file/contact.txt");
+    if ($page == 'home'){
+        $home++;
+        file_put_contents("file/home.txt",$home);
+    }elseif ($page == 'album'){
+        $album++;
+        file_put_contents("file/album.txt",$album);
+    }elseif ($page == 'contact'){
+        $contact++;
+        file_put_contents("file/contact.txt",$contact);
+    }else{
+
+    }
+
+    $counter = array($home,$album,$contact);
+
+
 }

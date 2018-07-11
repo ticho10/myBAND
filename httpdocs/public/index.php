@@ -33,6 +33,7 @@ if (isset($_POST['submitAlbum'])){
 switch ($page){
     case 'home' : homepage_action();break;
     case 'albums' : albumspage_action();break;
+    case 'contact' : contact_action();break;
     case 'admin' : adminpage_action();break;
     case 'beheerder' : beheerder_action();break;
     default: page_not_found_action(); break;

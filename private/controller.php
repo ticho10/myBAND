@@ -60,3 +60,13 @@ function login_action(){
 function album_uploud(){
     upload_album();
 }
+
+function contact_action(){
+    global $smarty;
+
+    $smarty->display('header.tpl');
+    $smarty->display('menu.tpl');
+    $smarty->display('contact.tpl');
+    $smarty->display('toAdmin.tpl');
+    $smarty->display('footer.tpl');
+}

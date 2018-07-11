@@ -47,7 +47,10 @@ table-top{
 
 }
 
-
+.albumFoto{
+    width: 300px;
+    height: 300px;
+}
 
 /* 2 koloms layout */
 @media screen and (min-width: 630px) {

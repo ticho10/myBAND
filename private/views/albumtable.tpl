@@ -13,7 +13,7 @@
         <td>{$album[1]}</td>
         <td>{$album[2]}</td>
         <td>{$album[3]}</td>
-        <th><a href="index.php?page=admin&id={$album[0]}"><b>DELETE</b></a></th>
+        <th><a href="index.php?page=admin&id={$album[0]}&location={$album[3]}"><b>DELETE</b></a></th>
     </tr>
 {/foreach}
 </table>
